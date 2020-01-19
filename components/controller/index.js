@@ -7,13 +7,20 @@ let control = {
     emptyTiles: [],
     doorTile: -1,
     keyTile: -1,
+    score: 0,
     hasKey: false,
 }
 
 control.tileDim = Math.sqrt(control.tile_count);
 control.createRoom = function createRoom(){
     const room = document.createElement('div');
+    const score = document.createElement('h2');
+    const keyScore = document.createElement('img');
+    score.textContent = `Score: ${control.score}`;
+    keyScore.src = './assets/key.png';
+    score.classList.add('score');
     room.classList.add('room');
+    keyScore.classList.add('keyScore');
 
     document.querySelector('.start-btn').style.display = 'none';
 
@@ -21,7 +28,10 @@ control.createRoom = function createRoom(){
     for(let i = 0; i < control.tile_count; i++){
         room.append(createTile(control.tileDim, i))
     }
-    document.querySelector('.game').append(room);
+    const game = document.querySelector('.game');
+    game.append(score);
+    game.append(keyScore);
+    game.append(room);
     setDoor();
     return room;
 }
@@ -31,20 +41,6 @@ function createTile(tileDim, tileNo){
     const tileWidth = 100 / tileDim;
     tile.classList.add('tile', 'covered', `tile_${tileNo}`);
     tile.style.width = `${tileWidth}%`
-
-    // tile.addEventListener('click', clickActive(this, tileNo))
-    // () => {
-    //     if(title.classList.contains('activeTile')){
-    //         title.classList.toggle('activeTile');
-    //         control.clearTiles.push(tileNo);
-    //         if(title.classList.contains(`${control.keyTile}`)){
-    //             title.classList.toggle('keyTile');
-    //         }else{
-    //             title.classList.toggle('clearTile')
-    //         }
-    //         refreshActive();
-    //     }
-    //})
 
     return tile;
 }
@@ -114,16 +110,3 @@ function setActive(tileNo){
         }
     })
 }
-
-// function clickActive(tile, tileNo){
-//     if(tile.classList.contains('activeTile')){
-//         tile.classList.toggle('activeTile');
-//         control.clearTiles.push(tileNo);
-//     }
-//     if(tile.classList.contains(`tile_${control.keyTile}`)){
-//         tile.classList.toggle('keyTile');
-//     }else{
-//         tile.classList.toggle('clearTile')
-//     }
-//     refreshActive();
-// }
