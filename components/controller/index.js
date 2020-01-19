@@ -94,6 +94,7 @@ function setDoor(){
     control.inactiveTiles.splice(control.inactiveTiles.indexOf(control.doorTile), 1);
     door.classList.toggle('covered');
     door.classList.toggle('doorTile');
+    // door.style.background = 'url(./assets/door.png) no-repeat'
     control.clearTiles.push(control.doorTile);
     refreshActive();
 }
