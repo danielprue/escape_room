@@ -13,7 +13,7 @@ let control = {
     hunger: 20,
     startHunger: 20,
     foodCount: 1,
-    foodHeal: 10,
+    foodHeal: 4,
     hasKey: false,
     gameOver: false
 }
@@ -143,7 +143,7 @@ function setActive(tileNo){
                 tile.classList.toggle('meatTile');
                 tile.addEventListener('click', () => {
                     if(control.meatTiles.includes(tileNo) && !control.gameOver){
-                        changeHunger(10);
+                        changeHunger(control.foodHeal);
                         tile.classList.toggle('meatTile');
                         tile.classList.toggle('clearTile');
                         control.meatTiles.splice(control.meatTiles.indexOf(tileNo), 1);
